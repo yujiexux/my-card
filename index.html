@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人介绍卡片</title>
+  <!-- 引入 Font Awesome 图标库 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="profile-card">
+      <div class="avatar-wrap">
+        <img
+          class="avatar"
+          src="https://via.placeholder.com/160x160.png?text=Avatar"
+          alt="个人头像"
+        />
+      </div>
+
+      <div class="card-content">
+        <span class="tag">Personal Profile</span>
+        <h1 class="name">徐玉杰<i class="fas fa-check-circle" style="color: #3b82f6; font-size: 20px; margin-left: 8px;"></i>
+        </h1>
+        <p id="pos-service" style="cursor: pointer;">银行 POS 服务</p>
+        <p class="intro">
+          专注于为商户提供稳定、高效、贴心的 POS 服务支持，让每一笔交易都更顺畅安心。
+        </p>
+        <button class="contact-btn" id="contact-btn" type="button">联系我</button>
+      </div>
+    </section>
+
+    
+  <div class="modal-overlay" id="wechat-modal" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-title">
+        <button class="modal-close" id="modal-close" type="button" aria-label="关闭弹窗">×</button>
+        <h2 id="wechat-modal-title">添加微信联系我</h2>
+        <img
+          class="modal-qr-img"
+          src="wechat-qr.jpg"
+          alt="微信二维码，扫码添加联系"
+          width="200"
+          height="200"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </main>
+  <script>
+    // 找到那个身份证号为 pos-service 的元素
+    const posText = document.getElementById('pos-service');
+    const contactBtn = document.getElementById('contact-btn');
+    const wechatModal = document.getElementById('wechat-modal');
+    const modalCloseBtn = document.getElementById('modal-close');
+  
+    // 给它装上一个“监听器”，听着有没有人“点击”它
+    posText.addEventListener('click', function() {
+      // 一旦点击，就执行这个弹出动作
+      alert('从业10年，竭诚为您服务！');
+    });
+
+    contactBtn.addEventListener('click', function () {
+      wechatModal.classList.add('is-open');
+      wechatModal.setAttribute('aria-hidden', 'false');
+    });
+
+    modalCloseBtn.addEventListener('click', function () {
+      wechatModal.classList.remove('is-open');
+      wechatModal.setAttribute('aria-hidden', 'true');
+    });
+
+    wechatModal.addEventListener('click', function (event) {
+      if (event.target === wechatModal) {
+        wechatModal.classList.remove('is-open');
+        wechatModal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
+</body>
+</html>
