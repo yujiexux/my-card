@@ -33,6 +33,10 @@
         <p class="intro">
           专注于为商户提供稳定、高效、贴心的 POS 服务支持，让每一笔交易都更顺畅安心。
         </p>
+        <div class="wechat-copy-container">
+          <span>微信号：<strong id="wechat-id">xzxyj1208</strong></span>
+          <button onclick="copyWeChat()" id="copy-btn" type="button">点击复制</button>
+        </div>
         <button class="contact-btn" id="contact-btn" type="button">联系我</button>
       </div>
     </section>
@@ -82,6 +86,26 @@
         wechatModal.setAttribute('aria-hidden', 'true');
       }
     });
+    function copyWeChat() {
+        var weChatText = document.getElementById("wechat-id").innerText;
+        // 如果有“微信号：”前缀，过滤掉它，只复制纯信号
+        if(weChatText.includes("：")){
+            weChatText = weChatText.split("：")[1];
+        }
+        
+        navigator.clipboard.writeText(weChatText).then(function() {
+            var btn = document.getElementById("copy-btn");
+            btn.innerText = "复制成功！";
+            btn.style.backgroundColor = "#28a745"; 
+            
+            setTimeout(function() {
+                btn.innerText = "点击复制";
+                btn.style.backgroundColor = ""; 
+            }, 2000);
+        }).catch(function(err) {
+            alert("复制失败，请手动复制：" + weChatText);
+        });
+    }
   </script>
 </body>
 </html>
